@@ -119,14 +119,6 @@
       opacity:.6;
       cursor:not-allowed
     }
-    .ghost{
-      background:transparent;
-      border:1px dashed var(--border);
-      color:var(--text)
-    }
-    .download-btn{
-      margin-left:auto
-    }
     .theme-toggle{
       display:inline-flex;
       align-items:center;
@@ -163,20 +155,14 @@
     }
     .grid{
       display:grid;
-      grid-template-columns:1.1fr 1fr;
+      grid-template-columns: 1fr 1.2fr;
       gap:28px;
-      align-items:stretch
+      align-items:flex-start;
     }
     @media (max-width:980px){
       .grid{
         display: flex;
         flex-direction: column;
-      }
-      .hairstyle-card {
-        order: 2;
-      }
-      .uploader-card {
-        order: 1;
       }
     }
     .card{
@@ -184,75 +170,59 @@
       border:1px solid var(--border);
       border-radius:16px;
       box-shadow:var(--shadow);
-      padding:16px;
-      height:100%
+      padding:20px;
     }
-    /* Carrusel de peinados */
-    .hairstyles-container {
-      position: relative;
-      overflow: hidden;
-      border-radius:12px;
-      height:460px;
-      background:color-mix(in srgb,var(--card) 85%, transparent);
-    }
-    .hairstyles-carousel {
-      display: flex;
-      transition: transform 0.5s ease;
-      height: 100%;
+    /* Peinados */
+    .hairstyles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
     }
     .hairstyle-item {
-      flex: 0 0 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      padding: 8px;
+      text-align: center;
+      transition: all .2s ease;
+    }
+    .hairstyle-item:hover {
+      border-color: var(--accent-2);
+      background: color-mix(in srgb, var(--card) 50%, transparent);
+    }
+    .hairstyle-item.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px color-mix(in srgb, var(--accent) 30%, transparent);
     }
     .hairstyle-item img {
-      max-width: 100%;
-      max-height: 380px;
-      object-fit: contain;
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
       border-radius: 8px;
+      margin-bottom: 8px;
     }
     .hairstyle-name {
-      margin-top: 10px;
       font-weight: 600;
-      text-align: center;
+      font-size: 14px;
     }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-    .carousel-btn.prev {
-      left: 10px;
-    }
-    .carousel-btn.next {
-      right: 10px;
-    }
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.7);
+    .hairstyle-description {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 12px;
+      display: none; /* Se muestra con JS */
     }
     /* Uploader */
+    .uploader-card {
+      position: sticky;
+      top: 80px;
+    }
     .drop{
       display:flex;
       flex-direction:column;
       gap:12px;
       justify-content:center;
       align-items:center;
-      min-height:460px;
+      min-height:300px;
       border:2px dashed var(--border);
       border-radius:12px;
       background:color-mix(in srgb,var(--card) 85%, transparent);
@@ -272,112 +242,34 @@
       color:var(--muted)
     }
     /* Resultados */
-    .results-container {
-      padding: 20px;
+    .result-container {
+      padding: 20px 0;
     }
     .result-title {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       margin-bottom: 15px;
       text-align: center;
     }
-    .result-images {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-    .result-image {
+    .result-image-wrapper {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
     }
-    .result-image img {
-      width: 100%;
+    .result-image-wrapper img {
+      max-width: 100%;
+      max-height: 500px;
       border-radius: 8px;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-    }
-    .result-label {
-      margin-top: 8px;
-      font-weight: 600;
-    }
-    @media (max-width: 768px) {
-      .result-images {
-        grid-template-columns: 1fr;
-      }
-    }
-    /* Barber pole animation */
-    .barber-pole {
-      width: 40px;
-      height: 120px;
-      margin: 20px auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .pole-animation {
-      width: 100%;
-      height: 300%;
-      background: repeating-linear-gradient(
-        45deg,
-        #ff0000,
-        #ff0000 20px,
-        #ffffff 20px,
-        #ffffff 40px,
-        #0000ff 40px,
-        #0000ff 60px
-      );
-      animation: barberPole 3s linear infinite;
-    }
-    @keyframes barberPole {
-      0% {
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(-66.6%);
-      }
-    }
-    /* Sections alternas */
-    .section{
-      padding:56px 0
-    }
-    .alt{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:26px;
-      align-items:center
-    }
-    .alt .img{
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow)
-    }
-    .alt .img img{
-      width:100%;
-      height:100%;
-      object-fit:cover
-    }
-    .alt .text h2{
-      margin:0 0 10px;
-      font-size:28px
-    }
-    .alt .text p{
-      margin:0 0 14px;
-      color:var(--muted)
-    }
-    @media (max-width:980px){
-      .alt{
-        grid-template-columns:1fr
-      }
+      object-fit: contain;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
     /* Footer */
     footer{
       border-top:1px solid var(--border);
       padding:26px 0;
       color:var(--muted);
-      font-size:14px
+      font-size:14px;
+      text-align: center;
     }
     .toast{
       position:fixed;
@@ -389,7 +281,8 @@
       padding:10px 12px;
       border-radius:10px;
       box-shadow:var(--shadow);
-      display:none
+      display:none;
+      z-index: 100;
     }
     .toast.show{
       display:block
@@ -406,10 +299,9 @@
       border:0
     }
     
-    /* Estilos para la vista previa de imagen */
     .image-preview {
       max-width: 100%;
-      max-height: 300px;
+      max-height: 250px;
       border-radius: 8px;
       display: none;
       margin-bottom: 15px;
@@ -436,7 +328,6 @@
       height: 18px;
     }
     
-    /* Progress bar */
     .progress-bar {
       width: 100%;
       height: 4px;
@@ -454,7 +345,6 @@
       transition: width 0.3s ease;
     }
     
-    /* Error message */
     .error-message {
       color: #ef4444;
       font-size: 12px;
@@ -462,77 +352,24 @@
       display: none;
     }
     
-    /* Mejoras para móvil */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-      
-      .hero p {
-        font-size: 16px;
-      }
-      
-      .hairstyles-container {
-        height: 300px;
-      }
-      
-      .drop {
-        min-height: 300px;
-      }
-      
-      .apikey {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .apikey input {
-        width: 150px;
-      }
-      
-      .controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .btn, .mini-btn {
-        width: 100%;
-        text-align: center;
-      }
-      
-      .download-btn {
-        margin-left: 0;
-      }
+      .hero h1 { font-size: 32px; }
+      .apikey { flex-wrap: wrap; justify-content: center; }
+      .apikey input { width: 150px; }
+      .controls { flex-direction: column; align-items: stretch; gap: 10px; }
+      .btn, .mini-btn { width: 100%; text-align: center; }
     }
     
     @media (max-width: 480px) {
-      .nav {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 0;
-      }
-      
-      .right {
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-      }
-      
-      .hero {
-        padding: 30px 0 20px;
-      }
-      
-      .card {
-        padding: 12px;
-      }
-      
-      .section {
-        padding: 40px 0;
-      }
+      .nav { flex-direction: column; height: auto; padding: 10px 0; }
+      .right { width: 100%; justify-content: center; margin-top: 10px; }
+      .hero { padding: 30px 0 20px; }
+      .card { padding: 15px; }
+      .section { padding: 40px 0; }
     }
   </style>
 </head>
 <body>
-  <a id="top" class="sr-only">top</a>
   <header>
     <div class="container nav">
       <div class="brand">
@@ -560,30 +397,22 @@
 
   <main>
     <section class="hero container">
-      <h1>HAIR Style - Prueba peinados 2025 con IA</h1>
-      <p>Sube tu foto y prueba virtualmente los peinados más trendings del momento.</p>
+      <h1>Prueba un nuevo look con IA</h1>
+      <p>Sube tu foto, elige un estilo y deja que la magia suceda. ¡Así de fácil!</p>
 
       <div class="grid">
-        <!-- Carrusel de Peinados -->
-        <div class="card hairstyle-card">
-          <div class="hairstyles-container">
-            <div class="hairstyles-carousel" id="hairstylesCarousel">
-              <!-- Las imágenes de peinados se agregarán con JavaScript -->
-            </div>
-            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
-            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
-          </div>
-          <div class="controls">
-            <span class="helper" id="selectedHairstyle">Selecciona un peinado</span>
-          </div>
-          <!-- Poste de barbero animado -->
-          <div class="barber-pole">
-            <div class="pole-animation"></div>
+        <!-- Selección de Peinados -->
+        <div class="card">
+          <h2>1. Elige un estilo</h2>
+          <p class="helper" id="hairstyle-description-display">Selecciona un corte para ver su descripción.</p>
+          <div class="hairstyles-grid" id="hairstylesGrid">
+            <!-- Los peinados se agregarán con JavaScript -->
           </div>
         </div>
 
         <!-- Uploader + Acciones -->
         <div class="card uploader-card">
+          <h2>2. Sube tu foto</h2>
           <div id="drop" class="drop">
             <button id="removeBtn" class="close-btn" style="display:none" aria-label="Quitar imagen">
               <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
@@ -592,21 +421,21 @@
               </svg>
             </button>
             <div id="drop-text">
-              <div style="font-weight:700;font-size:18px;margin-bottom:6px">Arrastra tu foto aquí o haz clic para cargar</div>
-              <div class="hint">JPG, PNG o WEBP. También puedes pegar una imagen.</div>
+              <div style="font-weight:700;font-size:18px;margin-bottom:6px">Arrastra tu foto o haz clic</div>
+              <div class="hint">También puedes pegar una imagen desde el portapapeles.</div>
             </div>
             
             <img id="imagePreview" class="image-preview" alt="Vista previa" />
             
-            <input id="fileInput" type="file" accept="image/*" style="display:none" />
+            <input id="fileInput" type="file" accept="image/jpeg, image/png, image/webp" style="display:none" />
             
             <div class="progress-bar" id="progressBar">
               <div class="progress-fill" id="progressFill"></div>
             </div>
             
-            <div class="controls">
+            <div class="controls" style="margin-top: 15px;">
               <button id="chooseBtn" class="btn">Elegir imagen</button>
-              <button id="runBtn" class="btn" style="display:none">Aplicar Peinado</button>
+              <button id="runBtn" class="btn" style="display:none">✨ Aplicar Peinado</button>
               <span id="status" class="helper"></span>
               <div id="errorMessage" class="error-message"></div>
             </div>
@@ -615,59 +444,31 @@
       </div>
       
       <!-- Resultados -->
-      <div class="results-container" id="resultsContainer" style="display:none;">
-        <div class="result-title">Tu nuevo look</div>
-        <div class="result-images">
-          <div class="result-image">
-            <img id="resultFront" alt="Vista frontal" />
-            <div class="result-label">Frente</div>
-          </div>
-          <div class="result-image">
-            <img id="resultSide" alt="Vista lateral" />
-            <div class="result-label">Perfil</div>
-          </div>
-          <div class="result-image">
-            <img id="resultBack" alt="Vista trasera" />
-            <div class="result-label">Espalda</div>
-          </div>
+      <div class="result-container" id="resultContainer" style="display:none;">
+        <div class="result-title">¡Tu nuevo look!</div>
+        <div class="result-image-wrapper">
+          <img id="resultImage" alt="Resultado del peinado" />
         </div>
-        <div class="controls" style="margin-top:20px;justify-content:center;">
-          <button id="downloadBtn" class="btn download-btn">Descargar resultados</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Secciones alternas -->
-    <section class="section">
-      <div class="container alt">
-        <div class="img">
-          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTUwIiByPSI4MCIgZmlsbD0iI2Q0ZTVmZiIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjEzMCIgcj0iMTUiIGZpbGw9IiM1OTYzNzciLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSIxMzAiIHI9IjE1IiBmaWxsPSIjNTk2Mzc3Ii8+PHBhdGggZD0iTTE2MCAxOTAgQzE2MCAxOTAgMjAwIDIxMCAyNDAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNjAgMTUwIEwxNDAgMTMwIEwxNjAgMTEwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yNDAgMTUwIEwyNjAgMTMwIEwyNDAgMTEwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Ejemplo de peinado 1">
-        </div>
-        <div class="text">
-          <h2>Prueba los peinados más modernos de 2025 sin compromiso</h2>
-          <p>¿Te gustaría cambiar de look pero no te decides? Con HAIR Style, puedes probar virtualmente los peinados que están marcando tendencia en 2025. Sube tu foto y descubre cómo te quedaría ese corte que tanto has estado pensando.</p>
-          <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Probar peinados</button>
+        <div class="controls" style="margin-top:20px;justify-content:center;display:flex;gap:15px;">
+          <button id="downloadBtn" class="btn">Descargar</button>
+          <button id="startOverBtn" class="mini-btn">Probar otro</button>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container alt" style="direction:rtl">
-        <div class="img" style="direction:ltr">
-          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTUwIiByPSI4MCIgZmlsbD0iI2Q0ZTVmZiIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjEzMCIgcj0iMTUiIGZpbGw9IiM1OTYzNzciLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSIxMzAiIHI9IjE1IiBmaWxsPSIjNTk2Mzc3Ii8+PHBhdGggZD0iTTE2MCAxOTAgQzE2MCAxOTAgMjAwIDIxMCAyNDAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNjAgMTUwIEwxNDAgMTMwIEwxNjAgMTEwIiBzdHJva2U9IiNlYzQ4OTkiIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yNDAgMTUwIEwyNjAgMTMwIEwyNDAgMTEwIiBzdHJva2U9IiNlYzQ4OTkiIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xODAgMTcwIEwyMjAgMTcwIiBzdHJva2U9IiNlYzQ4OTkiIHN0cm9rZS13aWR0aD0iNiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Ejemplo de peinado 2">
+        <div class="container alt">
+          <div class="text">
+            <h2>¿Cómo funciona?</h2>
+            <p>Nuestra IA analiza tu foto y el peinado que has elegido para crear una imagen realista de cómo te verías. Es la forma perfecta de experimentar sin riesgos antes de ir a la peluquería.</p>
+          </div>
         </div>
-        <div class="text" style="direction:ltr">
-          <h2>Visión 360° de tu nuevo estilo</h2>
-          <p>No solo verás cómo te queda el peinado de frente, sino que obtendrás una visión completa con imágenes de frente, perfil y espalda. Así podrás tomar la decisión perfecta para tu próximo cambio de look.</p>
-          <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Probar peinados</button>
-        </div>
-      </div>
-    </section>
+      </section>
   </main>
 
   <footer>
     <div class="container">
-      © <span id="year"></span> HAIR Style · Proyecto demo gratuito. La clave de API se almacena en tu navegador.
+      © <span id="year"></span> HAIR Style · Creado como demo con Gemini. La clave de API se almacena localmente en tu navegador.
     </div>
   </footer>
 
@@ -698,52 +499,42 @@
     // ============ Año footer ============ 
     $('#year').textContent = new Date().getFullYear();
 
-    // ============ CARRUSEL DE PEINADOS ============
+    // ============ DATOS DE PEINADOS ============
     const hairstyles = [
-      { name: "Corte Bob", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjgwIiB5PSIxNTAiIHdpZHRoPSIxNDAiIGhlaWdodD0iODAiIGZpbGw9IiNkNmUwZmYiLz48L3N2Zz4=" },
-      { name: "Undercut", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjgwIiB5PSIxMjAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIGZpbGw9IiM1OTYzNzciLz48cmVjdCB4PSI4MCIgeT0iMTUwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZDZlMGZmIi8+PC9zdmc+" },
-      { name: "Mullet", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjgwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiNkNmUwZmYiLz48cmVjdCB4PSIxODAiIHk9IjE1MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzU5NjM3NyIvPjwvc3ZnPg==" },
-      { name: "Corte Pixie", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjkwIiB5PSI5MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzU5NjM3NyIvPjxyZWN0IHg9IjkwIiB5PSIxMzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDZlMGZmIi8+PC9zdmc+" },
-      { name: "Ondas Beach", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik04MCAxNTAgQzEwMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAyMDAgMTMwIDIyMCAxNTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxNzAgQzEwMCAxNTAgMTMwIDE1MCAxNTAgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE3MCBDMTcwIDE1MCAyMDAgMTUwIDIyMCAxNzAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" },
-      { name: "Corte Shag", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik05MCAxNTAgQzExMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAxOTAgMTMwIDIxMCAxNTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04NSAxNzAgQzEwNSAxNTAgMTM1IDE1MCAxNTUgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTU1IDE3MCBDMTc1IDE1MCAyMDUgMTUwIDIyNSAxNzAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxOTAgQzEwMCAxNzAgMTMwIDE3MCAxNTAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE5MCBDMTcwIDE3MCAyMDAgMTcwIDIyMCAxOTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" }
+      { name: "Bob", image: "/images/bob.jpeg", description: "Un clásico atemporal, el corte Bob se caracteriza por su línea recta y longitud que suele llegar a la mandíbula." },
+      { name: "Undercut", image: "/images/undercut.jpeg", description: "Moderno y atrevido, el Undercut mantiene el cabello más largo en la parte superior mientras los lados y la nuca están rapados." },
+      { name: "Mullet", image: "/images/mullet.jpeg", description: "Corto por delante, largo por detrás. El Mullet ha vuelto con fuerza, ofreciendo un estilo retro y rebelde." },
+      { name: "Pixie", image: "/images/pixie.jpeg", description: "Un corte corto y chic que resalta las facciones. Es versátil y puede ser tanto elegante como desenfadado." },
+      { name: "Ondas Beach", image: "/images/ondas-beach.jpeg", description: "Perfecto para un look relajado y veraniego, las ondas playeras aportan textura y volumen natural al cabello." },
+      { name: "Shag", image: "/images/shag.jpeg", description: "Un corte a capas con mucho movimiento y textura, ideal para un estilo bohemio y con personalidad." }
     ];
 
-    let currentHairstyleIndex = 0;
-    const hairstylesCarousel = $('#hairstylesCarousel');
-    const selectedHairstyleSpan = $('#selectedHairstyle');
-    const prevBtn = $('#prevBtn');
-    const nextBtn = $('#nextBtn');
+    let selectedHairstyle = null;
+    const hairstylesGrid = $('#hairstylesGrid');
+    const hairstyleDescriptionDisplay = $('#hairstyle-description-display');
 
-    // Inicializar carrusel
-    function initCarousel() {
-      hairstylesCarousel.innerHTML = '';
+    function initHairstyles() {
+      hairstylesGrid.innerHTML = '';
       hairstyles.forEach((hairstyle, index) => {
         const item = document.createElement('div');
         item.className = 'hairstyle-item';
+        item.dataset.index = index;
         item.innerHTML = `
           <img src="${hairstyle.image}" alt="${hairstyle.name}">
           <div class="hairstyle-name">${hairstyle.name}</div>
         `;
-        hairstylesCarousel.appendChild(item);
+        item.addEventListener('click', () => selectHairstyle(item, hairstyle));
+        hairstylesGrid.appendChild(item);
       });
-      updateSelectedHairstyle();
     }
 
-    function updateSelectedHairstyle() {
-      selectedHairstyleSpan.textContent = `Peinado seleccionado: ${hairstyles[currentHairstyleIndex].name}`;
+    function selectHairstyle(element, hairstyle) {
+      $$('.hairstyle-item').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedHairstyle = hairstyle;
+      hairstyleDescriptionDisplay.textContent = selectedHairstyle.description;
+      toast(`Peinado seleccionado: ${selectedHairstyle.name}`);
     }
-
-    prevBtn.addEventListener('click', () => {
-      currentHairstyleIndex = (currentHairstyleIndex - 1 + hairstyles.length) % hairstyles.length;
-      hairstylesCarousel.style.transform = `translateX(-${currentHairstyleIndex * 100}%)`;
-      updateSelectedHairstyle();
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentHairstyleIndex = (currentHairstyleIndex + 1) % hairstyles.length;
-      hairstylesCarousel.style.transform = `translateX(-${currentHairstyleIndex * 100}%)`;
-      updateSelectedHairstyle();
-    });
 
     // ============ API Key ============ 
     const apiKeyInput = $('#apiKeyInput');
@@ -764,10 +555,12 @@
     const statusEl = $('#status');
     const errorMessage = $('#errorMessage');
     const downloadBtn = $('#downloadBtn');
+    const startOverBtn = $('#startOverBtn');
     const imagePreview = $('#imagePreview');
     const progressBar = $('#progressBar');
     const progressFill = $('#progressFill');
-    const resultsContainer = $('#resultsContainer');
+    const resultContainer = $('#resultContainer');
+    const resultImage = $('#resultImage');
 
     let currentBeforeDataUrl = null;
     let currentBeforeMime = null;
@@ -779,26 +572,9 @@
       fileInput.click();
     });
 
-    // Función para quitar la imagen
-    removeBtn.addEventListener('click', () => {
-      drop.classList.remove('image-loaded');
-      imagePreview.style.display = 'none';
-      imagePreview.src = '';
-      dropText.style.display = 'block';
-      chooseBtn.style.display = 'inline-block';
-      runBtn.style.display = 'none';
-      removeBtn.style.display = 'none';
-      downloadBtn.style.display = 'none';
-      progressBar.style.display = 'none';
-      statusEl.textContent = '';
-      errorMessage.style.display = 'none';
-      resultsContainer.style.display = 'none';
-      currentBeforeDataUrl = null;
-      currentBeforeMime = null;
-      toast('Imagen eliminada');
-    });
+    removeBtn.addEventListener('click', resetUploader);
+    startOverBtn.addEventListener('click', resetAll);
 
-    // Drag & drop
     ['dragenter','dragover'].forEach(evt=>drop.addEventListener(evt, e=>{e.preventDefault(); e.stopPropagation(); drop.classList.add('dragover');}));
     ['dragleave','drop'].forEach(evt=>drop.addEventListener(evt, e=>{e.preventDefault(); e.stopPropagation(); drop.classList.remove('dragover');}));
     drop.addEventListener('drop', e=> {
@@ -806,7 +582,6 @@
       if(f) handleFile(f);
     });
     
-    // Paste
     document.addEventListener('paste', e=> {
       const items = e.clipboardData?.items;
       if(!items) return;
@@ -821,14 +596,38 @@
       const f = e.target.files[0]; if(f) handleFile(f);
     });
 
-    // ============ Manejo de archivos ============
+    // ============ Manejo de archivos y UI ============
+    function resetUploader() {
+      drop.classList.remove('image-loaded');
+      imagePreview.style.display = 'none';
+      imagePreview.src = '';
+      dropText.style.display = 'block';
+      chooseBtn.style.display = 'inline-block';
+      runBtn.style.display = 'none';
+      removeBtn.style.display = 'none';
+      progressBar.style.display = 'none';
+      statusEl.textContent = '';
+      errorMessage.style.display = 'none';
+      currentBeforeDataUrl = null;
+      currentBeforeMime = null;
+    }
+
+    function resetAll() {
+        resetUploader();
+        resultContainer.style.display = 'none';
+        resultImage.src = '';
+        $$('.hairstyle-item').forEach(el => el.classList.remove('selected'));
+        selectedHairstyle = null;
+        hairstyleDescriptionDisplay.textContent = 'Selecciona un corte para ver su descripción.';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function handleFile(file){
       if(!file || !file.type.startsWith('image/')){ 
         showError('Selecciona un archivo de imagen válido (JPG, PNG, WEBP)'); 
         return; 
       }
       
-      // Validar tamaño (máximo 10MB)
       if(file.size > 10 * 1024 * 1024) {
         showError('La imagen es demasiado grande. Máximo 10MB.');
         return;
@@ -840,18 +639,16 @@
         currentBeforeDataUrl = e.target.result;
         currentBeforeMime = file.type;
         
-        // Mostrar vista previa
         imagePreview.src = currentBeforeDataUrl;
         imagePreview.style.display = 'block';
         dropText.style.display = 'none';
         
-        // Cambiar visibilidad de botones
         drop.classList.add('image-loaded');
         chooseBtn.style.display = 'none';
         runBtn.style.display = 'inline-block';
         removeBtn.style.display = 'flex';
         
-        statusEl.textContent = 'Imagen cargada. Haz clic en "Aplicar Peinado" para procesar.';
+        statusEl.textContent = 'Imagen cargada. Lista para aplicar el peinado.';
       };
       reader.readAsDataURL(file);
     }
@@ -859,7 +656,6 @@
     function showError(message) {
       errorMessage.textContent = message;
       errorMessage.style.display = 'block';
-      toast(message);
     }
 
     function hideError() {
@@ -868,27 +664,19 @@
 
     function updateProgress(percent) {
       progressFill.style.width = `${percent}%`;
-      if (percent > 0) {
-        progressBar.style.display = 'block';
-      } else {
-        progressBar.style.display = 'none';
-      }
+      progressBar.style.display = percent > 0 ? 'block' : 'none';
     }
 
     // ========= Función para llamar a Gemini =========
     async function applyHairstyleWithGemini({apiKey, imageDataUrl, mimeType}) {
-      // Validar entrada
-      if (!apiKey) throw new Error('API Key requerida');
-      if (!imageDataUrl) throw new Error('Imagen requerida');
+      if (!apiKey) throw new Error('API Key no configurada.');
+      if (!imageDataUrl) throw new Error('No hay imagen para procesar.');
+      if (!selectedHairstyle) throw new Error('No se ha seleccionado ningún peinado.');
       
-      // Convierte DataURL -> base64 puro
       const base64 = imageDataUrl.split(',')[1];
-      if (!base64) throw new Error('Formato de imagen inválido');
+      if (!base64) throw new Error('Formato de imagen inválido.');
 
-      const selectedHairstyle = hairstyles[currentHairstyleIndex].name;
-
-      // Prompt para aplicar el peinado
-      const prompt = `Apply the hairstyle called "${selectedHairstyle}" to this person's photo. Generate images showing the person from different angles: front, side, and back. Image should realistically show how the hairstyle would look from that angle.`;
+      const prompt = `Aplica el peinado "${selectedHairstyle.name}" a la persona en la foto. La imagen final debe mostrar a la persona de frente, en una pose relajada, centrada y con un fondo blanco y limpio. El objetivo es visualizar claramente cómo quedaría el peinado en el usuario.`;
 
       const payload = {
         contents: [
@@ -896,12 +684,7 @@
             role: "user",
             parts: [
               { text: prompt },
-              { 
-                inlineData: { 
-                  mimeType: mimeType || "image/jpeg", 
-                  data: base64 
-                } 
-              }
+              { inlineData: { mimeType: mimeType || "image/jpeg", data: base64 } }
             ]
           }
         ],
@@ -912,64 +695,34 @@
         }
       };
 
-      // Usar endpoint no-streaming para mayor compatibilidad
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${encodeURIComponent(apiKey)}`;
       
       const response = await fetch(url, {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        let errorMessage = `Error HTTP ${response.status}`;
-        
+        let errorJson;
         try {
-          const errorJson = JSON.parse(errorText);
-          if (errorJson.error?.message) {
-            errorMessage = errorJson.error.message;
-          }
-        } catch (e) {
-          // Si no se puede parsear el JSON, usar el texto tal como está
-          errorMessage = errorText || errorMessage;
+            errorJson = JSON.parse(errorText);
+        } catch(e) {
+            throw new Error(`Error HTTP ${response.status}: ${errorText}`);
         }
-        
-        throw new Error(errorMessage);
+        throw new Error(errorJson.error?.message || `Error HTTP ${response.status}`);
       }
 
       const data = await response.json();
       
-      // Buscar imágenes en la respuesta
-      function findAllImages(obj, images = []) {
-        if (!obj || typeof obj !== 'object') return images;
-        
-        if (obj.inlineData?.data && obj.inlineData?.mimeType) {
-          images.push(`data:${obj.inlineData.mimeType};base64,${obj.inlineData.data}`);
-          return images;
-        }
-        
-        for (const key in obj) {
-          findAllImages(obj[key], images);
-        }
-        
-        return images;
-      }
-
-      const images = findAllImages(data);
-      if (images.length < 1) {
+      const imagePart = data.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+      if (!imagePart) {
         console.error('Respuesta completa:', JSON.stringify(data, null, 2));
-        throw new Error('La API no devolvió suficientes imágenes. Se esperaban 3.');
+        throw new Error('La API no devolvió una imagen en el formato esperado.');
       }
 
-      return {
-        front: images[0],
-        side: images[0],
-        back: images[0]
-      };
+      return `data:${imagePart.inlineData.mimeType};base64,${imagePart.inlineData.data}`;
     }
 
     // ========= Ejecutar aplicación de peinado =========
@@ -979,9 +732,12 @@
         showError('Introduce tu GEMINI_API_KEY y pulsa Guardar.'); 
         return; 
       }
-
       if (!currentBeforeDataUrl) {
         showError('Por favor, carga una imagen primero.');
+        return;
+      }
+      if (!selectedHairstyle) {
+        showError('Por favor, selecciona un estilo de peinado.');
         return;
       }
 
@@ -989,41 +745,26 @@
         hideError();
         runBtn.disabled = true;
         runBtn.textContent = 'Procesando...';
-        statusEl.textContent = 'Preparando imagen...';
-        updateProgress(10);
+        statusEl.textContent = 'Enviando a la IA...';
+        updateProgress(25);
 
-        // Simular progreso
-        setTimeout(() => {
-          statusEl.textContent = 'Enviando a Gemini AI...';
-          updateProgress(30);
-        }, 500);
-
-        setTimeout(() => {
-          statusEl.textContent = 'Aplicando peinado...';
-          updateProgress(60);
-        }, 1000);
-
-        const result = await applyHairstyleWithGemini({
+        const resultDataUrl = await applyHairstyleWithGemini({
           apiKey, 
           imageDataUrl: currentBeforeDataUrl, 
           mimeType: currentBeforeMime
         });
 
         updateProgress(90);
-        statusEl.textContent = 'Generando resultados...';
+        statusEl.textContent = 'Generando resultado...';
 
-        // Mostrar las tres imágenes
-        $('#resultFront').src = result.front;
-        $('#resultSide').src = result.side;
-        $('#resultBack').src = result.back;
-        
-        resultsContainer.style.display = 'block';
+        resultImage.src = resultDataUrl;
+        resultContainer.style.display = 'block';
         
         updateProgress(100);
-        statusEl.textContent = '¡Peinado aplicado exitosamente!';
+        statusEl.textContent = '¡Peinado aplicado!';
         toast('¡Nuevo look creado! ✅');
         
-        // Ocultar barra de progreso después de 2 segundos
+        resultImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => updateProgress(0), 2000);
 
       } catch(err) {
@@ -1031,61 +772,50 @@
         updateProgress(0);
         
         let errorMsg = err?.message || 'Error desconocido';
-        
-        // Mejorar mensajes de error comunes
         if (errorMsg.includes('API_KEY_INVALID')) {
-          errorMsg = 'API Key inválida. Verifica que sea correcta.';
+          errorMsg = 'API Key inválida o mal formada. Verifícala.';
         } else if (errorMsg.includes('PERMISSION_DENIED')) {
-          errorMsg = 'Permisos denegados. Verifica tu API Key y cuota.';
-        } else if (errorMsg.includes('QUOTA_EXCEEDED')) {
-          errorMsg = 'Cuota excedida. Espera un momento o verifica tu plan.';
-        } else if (errorMsg.includes('MODEL_NOT_FOUND')) {
-          errorMsg = 'Modelo no disponible. El servicio puede estar temporalmente inactivo.';
+          errorMsg = 'Permiso denegado. Verifica que tu API Key esté habilitada para el modelo Gemini.';
         }
         
         showError(errorMsg);
-        statusEl.textContent = '';
+        statusEl.textContent = 'Error en el proceso.';
         
       } finally {
         runBtn.disabled = false;
-        runBtn.textContent = 'Aplicar Peinado';
+        runBtn.textContent = '✨ Aplicar Peinado';
       }
     });
 
     // ========= Descargar resultado =========
     downloadBtn.addEventListener('click', async ()=> {
+      if (!resultImage.src) {
+        toast('No hay imagen para descargar.');
+        return;
+      }
       try {
-        const images = [$('#resultFront'), $('#resultSide'), $('#resultBack')];
+        const response = await fetch(resultImage.src);
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
         
-        for (let i = 0; i < images.length; i++) {
-          const img = images[i];
-          if (!img.src) continue;
-          
-          const response = await fetch(img.src);
-          const blob = await response.blob();
-          const objectUrl = URL.createObjectURL(blob);
-          
-          const a = document.createElement('a');
-          a.href = objectUrl;
-          a.download = `peinado-${hairstyles[currentHairstyleIndex].name.toLowerCase().replace(/\s+/g, '-')}-${['frente', 'perfil', 'espalda'][i]}-${Date.now()}.png`;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          
-          // Liberar memoria después de un tiempo
-          setTimeout(() => URL.revokeObjectURL(objectUrl), 100);
-        }
+        const a = document.createElement('a');
+        a.href = objectUrl;
+        a.download = `hair-style-${selectedHairstyle.name.toLowerCase().replace(/\s+/g, '-')}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
         
-        toast('Descargas iniciadas ⬇️');
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 100);
+        toast('Descarga iniciada ⬇️');
         
       } catch (err) {
         console.error('Error al descargar:', err);
-        toast('Error al descargar las imágenes');
+        toast('Error al descargar la imagen.');
       }
     });
 
     // Inicializar la aplicación
-    initCarousel();
+    initHairstyles();
   </script>
 </body>
 </html>
