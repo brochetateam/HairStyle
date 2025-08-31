@@ -678,14 +678,14 @@
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => [...el.querySelectorAll(s)];
     const toast = (msg, ms=3000) => {
-      const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+      const el = $("#toast"); el.textContent = msg; el.classList.add('show');
       setTimeout(()=>el.classList.remove('show'), ms);
     };
 
     // ============ Tema claro/oscuro ============ 
-    const themeBtn = $('#themeBtn');
-    const iconSun = $('#iconSun');
-    const iconMoon = $('#iconMoon');
+    const themeBtn = $("#themeBtn");
+    const iconSun = $("#iconSun");
+    const iconMoon = $("#iconMoon");
     function applyTheme(t){
       if(t==='dark'){ document.body.classList.add('dark'); iconSun.style.display='none'; iconMoon.style.display='block'; }
       else { document.body.classList.remove('dark'); iconSun.style.display='block'; iconMoon.style.display='none'; }
@@ -696,7 +696,7 @@
     themeBtn.addEventListener('click',()=>applyTheme(document.body.classList.contains('dark')?'light':'dark'));
 
     // ============ Año footer ============ 
-    $('#year').textContent = new Date().getFullYear();
+    $("#year").textContent = new Date().getFullYear();
 
     // ============ CARRUSEL DE PEINADOS ============
     const hairstyles = [
@@ -704,15 +704,15 @@
       { name: "Undercut", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjgwIiB5PSIxMjAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIGZpbGw9IiM1OTYzNzciLz48cmVjdCB4PSI4MCIgeT0iMTUwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZDZlMGZmIi8+PC9zdmc+" },
       { name: "Mullet", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjgwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiNkNmUwZmYiLz48cmVjdCB4PSIxODAiIHk9IjE1MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzU5NjM3NyIvPjwvc3ZnPg==" },
       { name: "Corte Pixie", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxyZWN0IHg9IjkwIiB5PSI5MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzU5NjM3NyIvPjxyZWN0IHg9IjkwIiB5PSIxMzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDZlMGZmIi8+PC9zdmc+" },
-      { name: "Ondas Beach", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik04MCAxNTAgQzEwMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAyMDAgMTMwIDIyMCAxNTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxNzAgQzEwMCAxNTAgMTMwIDE1MCAxNTAgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE3MCBDMTcwIDE1MCAyMDAgMTUwIDIyMCAxNzAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" },
-      { name: "Corte Shag", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik05MCAxNTAgQzExMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAxOTAgMTMwIDIxMCAxNTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04NSAxNzAgQzEwNSAxNTAgMTM1IDE1MCAxNTUgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTU1IDE3MCBDMTc1IDE1MCAyMDUgMTUwIDIyNSAxNzAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxOTAgQzEwMCAxNzAgMTMwIDE3MCAxNTAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE5MCBDMTcwIDE3MCAyMDAgMTcwIDIyMCAxOTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" }
+      { name: "Ondas Beach", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik04MCAxNTAgQzEwMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAyMDAgMTMwIDIyMCAxNTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxNzAgQzEwMCAxNTAgMTM1IDE1MCAxNTUgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTU1IDE3MCBDMTc1IDE1MCAyMDUgMTUwIDIyNSAxNzAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik04MCAxOTAgQzEwMCAxNzAgMTMwIDE3MCAxNTAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE5MCBDMTcwIDE3MCAyMDAgMTcwIDIyMCAxOTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" },
+      { name: "Corte Shag", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjZmN2ZiIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTIwIiByPSI3MCIgZmlsbD0iI2Q0ZTVmZiIvPjxwYXRoIGQ9Ik05MCAxNTAgQzExMCAxMzAgMTMwIDEzMCAxNTAgMTUwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE1MCBDMTcwIDEzMCAxOTAgMTMwIDIxMC 11MC41IiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNODUgMTcwIEMxMDUgMTUwIDEzNSAxNTAgMTU1IDE3MCIgc3Ryb2tlPSIjNTk2Mzc3IiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIC8+PHBhdGggZD0iTTE1NSAxNzAgQzE3NSAxNTAgMjA1IDE1MCAyMjUgMTcwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNODAgMTkwIEMxMCAxNzAgMTMwIDE3MCAxNTAgMTkwIiBzdHJva2U9IiM1OTYzNzciIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTUwIDE5MCBDMTcwIDE3MCAyMDAgMTcwIDIyMCAxOTAiIHN0cm9rZT0iIzU5NjM3NyIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSJub25lIiAvPjwvc3ZnPg==" }
     ];
 
     let currentHairstyleIndex = 0;
-    const hairstylesCarousel = $('#hairstylesCarousel');
-    const selectedHairstyleSpan = $('#selectedHairstyle');
-    const prevBtn = $('#prevBtn');
-    const nextBtn = $('#nextBtn');
+    const hairstylesCarousel = $("#hairstylesCarousel");
+    const selectedHairstyleSpan = $("#selectedHairstyle");
+    const prevBtn = $("#prevBtn");
+    const nextBtn = $("#nextBtn");
 
     // Inicializar carrusel
     function initCarousel() {
@@ -746,8 +746,8 @@
     });
 
     // ============ API Key ============ 
-    const apiKeyInput = $('#apiKeyInput');
-    const saveKeyBtn = $('#saveKeyBtn');
+    const apiKeyInput = $("#apiKeyInput");
+    const saveKeyBtn = $("#saveKeyBtn");
     apiKeyInput.value = localStorage.getItem('GEMINI_API_KEY') || '';
     saveKeyBtn.addEventListener('click', ()=> {
       localStorage.setItem('GEMINI_API_KEY', apiKeyInput.value.trim());
@@ -755,24 +755,24 @@
     });
 
     // ============ Uploader y elementos ============ 
-    const fileInput = $('#fileInput');
-    const drop = $('#drop');
-    const dropText = $('#drop-text');
-    const chooseBtn = $('#chooseBtn');
-    const runBtn = $('#runBtn');
-    const removeBtn = $('#removeBtn');
-    const statusEl = $('#status');
-    const errorMessage = $('#errorMessage');
-    const downloadBtn = $('#downloadBtn');
-    const imagePreview = $('#imagePreview');
-    const progressBar = $('#progressBar');
-    const progressFill = $('#progressFill');
-    const resultsContainer = $('#resultsContainer');
+    const fileInput = $("#fileInput");
+    const drop = $("#drop");
+    const dropText = $("#drop-text");
+    const chooseBtn = $("#chooseBtn");
+    const runBtn = $("#runBtn");
+    const removeBtn = $("#removeBtn");
+    const statusEl = $("#status");
+    const errorMessage = $("#errorMessage");
+    const downloadBtn = $("#downloadBtn");
+    const imagePreview = $("#imagePreview");
+    const progressBar = $("#progressBar");
+    const progressFill = $("#progressFill");
+    const resultsContainer = $("#resultsContainer");
 
     let currentBeforeDataUrl = null;
     let currentBeforeMime = null;
 
-    // ============ Event Listeners ============
+    // ============ Event Listeners ============ 
     chooseBtn.addEventListener('click', ()=>fileInput.click());
     drop.addEventListener('click', e=> {
       if(e.target.closest('.controls') || e.target.closest('#removeBtn')) return;
@@ -823,7 +823,7 @@
 
     // ============ Manejo de archivos ============
     function handleFile(file){
-      if(!file || !file.type.startsWith('image/')){ 
+      if(!file || !file.type.startsWith('image/')){
         showError('Selecciona un archivo de imagen válido (JPG, PNG, WEBP)'); 
         return; 
       }
@@ -875,20 +875,21 @@
       }
     }
 
-    // ========= Función para llamar a Gemini =========
-    async function applyHairstyleWithGemini({apiKey, imageDataUrl, mimeType}) {
+    // ========= Función para llamar a Gemini para un ángulo específico =========
+    async function generateAngle({ apiKey, imageDataUrl, mimeType, hairstyle, angle, isRefinement = false }) {
       // Validar entrada
       if (!apiKey) throw new Error('API Key requerida');
       if (!imageDataUrl) throw new Error('Imagen requerida');
-      
-      // Convierte DataURL -> base64 puro
+
       const base64 = imageDataUrl.split(',')[1];
       if (!base64) throw new Error('Formato de imagen inválido');
 
-      const selectedHairstyle = hairstyles[currentHairstyleIndex].name;
-
-      // Prompt para aplicar el peinado
-      const prompt = `Apply the hairstyle called "${selectedHairstyle}" to this person's photo. Generate images showing the person from different angles: front, side, and back. Image should realistically show how the hairstyle would look from that angle.`;
+      let prompt;
+      if (isRefinement) {
+        prompt = `Take the image provided, which already has the desired hairstyle, and just change the camera angle to a ${angle} view.\nCriteria for the new image:\n1.  Show the person from the ${angle} view.\n2.  Do NOT change the hairstyle, hair color, or the person's features.\n3.  The background must remain pure white.\n4.  The person should be perfectly centered.\n5.  The result must be a realistic, high-quality photograph that is consistent with the provided image.`;
+      } else {
+        prompt = `Take the user's photo and apply the hairstyle called \"${hairstyle}\".\nThe final image should meet these criteria:\n1.  Show the person from the ${angle} view.\n2.  The background must be completely removed and replaced with a pure white background.\n3.  The person should be perfectly centered in the image.\n4.  The result should be a realistic, high-quality photograph.`;
+      }
 
       const payload = {
         contents: [
@@ -896,88 +897,54 @@
             role: "user",
             parts: [
               { text: prompt },
-              { 
-                inlineData: { 
-                  mimeType: mimeType || "image/jpeg", 
-                  data: base64 
-                } 
-              }
+              { inlineData: { mimeType: mimeType || "image/jpeg", data: base64 } }
             ]
           }
         ],
         generationConfig: {
           responseModalities: ["IMAGE"],
           maxOutputTokens: 2048,
-          temperature: 0.1
+          temperature: 0.2
         }
       };
 
-      // Usar endpoint no-streaming para mayor compatibilidad
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${encodeURIComponent(apiKey)}`;
       
       const response = await fetch(url, {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        let errorMessage = `Error HTTP ${response.status}`;
-        
+        let errorMessage = `Error en la vista ${angle}: HTTP ${response.status}`;
         try {
           const errorJson = JSON.parse(errorText);
-          if (errorJson.error?.message) {
-            errorMessage = errorJson.error.message;
-          }
+          if (errorJson.error?.message) errorMessage = `Error en ${angle}: ${errorJson.error.message}`;
         } catch (e) {
-          // Si no se puede parsear el JSON, usar el texto tal como está
-          errorMessage = errorText || errorMessage;
+          errorMessage = `Error en ${angle}: ${errorText || `HTTP ${response.status}`}`; 
         }
-        
         throw new Error(errorMessage);
       }
 
       const data = await response.json();
       
-      // Buscar imágenes en la respuesta
-      function findAllImages(obj, images = []) {
-        if (!obj || typeof obj !== 'object') return images;
-        
-        if (obj.inlineData?.data && obj.inlineData?.mimeType) {
-          images.push(`data:${obj.inlineData.mimeType};base64,${obj.inlineData.data}`);
-          return images;
-        }
-        
-        for (const key in obj) {
-          findAllImages(obj[key], images);
-        }
-        
-        return images;
+      const imagePart = data.candidates?.[0]?.content?.parts?.find(p => p.inlineData?.data);
+      if (!imagePart) {
+        console.error(`Respuesta sin imagen para ${angle}:`, JSON.stringify(data, null, 2));
+        throw new Error(`La API no devolvió una imagen para la vista ${angle}.`);
       }
-
-      const images = findAllImages(data);
-      if (images.length < 1) {
-        console.error('Respuesta completa:', JSON.stringify(data, null, 2));
-        throw new Error('La API no devolvió suficientes imágenes. Se esperaban 3.');
-      }
-
-      return {
-        front: images[0],
-        side: images[0],
-        back: images[0]
-      };
+      
+      return `data:${imagePart.inlineData.mimeType};base64,${imagePart.inlineData.data}`;
     }
 
     // ========= Ejecutar aplicación de peinado =========
-    runBtn.addEventListener('click', async ()=> {
+    runBtn.addEventListener('click', async () => {
       const apiKey = (apiKeyInput.value || localStorage.getItem('GEMINI_API_KEY') || '').trim();
-      if(!apiKey){ 
-        showError('Introduce tu GEMINI_API_KEY y pulsa Guardar.'); 
-        return; 
+      if (!apiKey) {
+        showError('Introduce tu GEMINI_API_KEY y pulsa Guardar.');
+        return;
       }
 
       if (!currentBeforeDataUrl) {
@@ -989,63 +956,86 @@
         hideError();
         runBtn.disabled = true;
         runBtn.textContent = 'Procesando...';
-        statusEl.textContent = 'Preparando imagen...';
-        updateProgress(10);
-
-        // Simular progreso
-        setTimeout(() => {
-          statusEl.textContent = 'Enviando a Gemini AI...';
-          updateProgress(30);
-        }, 500);
-
-        setTimeout(() => {
-          statusEl.textContent = 'Aplicando peinado...';
-          updateProgress(60);
-        }, 1000);
-
-        const result = await applyHairstyleWithGemini({
-          apiKey, 
-          imageDataUrl: currentBeforeDataUrl, 
-          mimeType: currentBeforeMime
-        });
-
-        updateProgress(90);
-        statusEl.textContent = 'Generando resultados...';
-
-        // Mostrar las tres imágenes
-        $('#resultFront').src = result.front;
-        $('#resultSide').src = result.side;
-        $('#resultBack').src = result.back;
+        statusEl.textContent = 'Iniciando proceso...';
+        updateProgress(5);
         
+        const placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent pixel
+        $("#resultFront").src = placeholder;
+        $("#resultSide").src = placeholder;
+        $("#resultBack").src = placeholder;
         resultsContainer.style.display = 'block';
-        
-        updateProgress(100);
-        statusEl.textContent = '¡Peinado aplicado exitosamente!';
-        toast('¡Nuevo look creado! ✅');
-        
-        // Ocultar barra de progreso después de 2 segundos
-        setTimeout(() => updateProgress(0), 2000);
 
-      } catch(err) {
-        console.error('Error al aplicar peinado:', err);
-        updateProgress(0);
-        
-        let errorMsg = err?.message || 'Error desconocido';
-        
-        // Mejorar mensajes de error comunes
-        if (errorMsg.includes('API_KEY_INVALID')) {
-          errorMsg = 'API Key inválida. Verifica que sea correcta.';
-        } else if (errorMsg.includes('PERMISSION_DENIED')) {
-          errorMsg = 'Permisos denegados. Verifica tu API Key y cuota.';
-        } else if (errorMsg.includes('QUOTA_EXCEEDED')) {
-          errorMsg = 'Cuota excedida. Espera un momento o verifica tu plan.';
-        } else if (errorMsg.includes('MODEL_NOT_FOUND')) {
-          errorMsg = 'Modelo no disponible. El servicio puede estar temporalmente inactivo.';
+        const selectedHairstyle = hairstyles[currentHairstyleIndex].name;
+        let frontImageDataUrl = null;
+
+        // 1. Generar vista frontal
+        statusEl.textContent = 'Generando vista de frente... (1/3)';
+        try {
+          frontImageDataUrl = await generateAngle({
+            apiKey,
+            imageDataUrl: currentBeforeDataUrl,
+            mimeType: currentBeforeMime,
+            hairstyle: selectedHairstyle,
+            angle: 'front',
+            isRefinement: false
+          });
+          $("#resultFront").src = frontImageDataUrl;
+          updateProgress(33);
+        } catch (err) {
+          showError(err.message);
+          console.error(err);
+          $("#resultFront").src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0NDQ0NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIj48L2NpcmNsZT48bGluZSB4MT0iMTUiIHkxPSI5IiB4Mj0iOSIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjkiIHkxPSI5IiB4Mj0iMTUiIHkyPSIxNSI+PC9saW5lPjwvc3ZnPg==';
+          throw new Error("No se pudo generar la imagen frontal. El proceso se ha detenido.");
+        }
+
+        // 2. Generar vista de perfil desde la frontal
+        statusEl.textContent = 'Generando vista de perfil... (2/3)';
+        try {
+          const sideImageDataUrl = await generateAngle({
+            apiKey,
+            imageDataUrl: frontImageDataUrl, // Usar la imagen frontal generada
+            mimeType: 'image/png', // Asumimos que la IA devuelve PNG
+            hairstyle: selectedHairstyle,
+            angle: 'side',
+            isRefinement: true
+          });
+          $("#resultSide").src = sideImageDataUrl;
+          updateProgress(66);
+        } catch (err) {
+          showError(err.message);
+          console.error(err);
+          $("#resultSide").src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0NDQ0NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIj48L2NpcmNsZT48bGluZSB4MT0iMTUiIHkxPSI5IiB4Mj0iOSIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjkiIHkxPSI5IiB4Mj0iMTUiIHkyPSIxNSI+PC9saW5lPjwvc3ZnPg==';
         }
         
-        showError(errorMsg);
-        statusEl.textContent = '';
+        // 3. Generar vista de espalda desde la frontal
+        statusEl.textContent = 'Generando vista de espalda... (3/3)';
+        try {
+          const backImageDataUrl = await generateAngle({
+            apiKey,
+            imageDataUrl: frontImageDataUrl, // Usar la imagen frontal generada
+            mimeType: 'image/png',
+            hairstyle: selectedHairstyle,
+            angle: 'back',
+            isRefinement: true
+          });
+          $("#resultBack").src = backImageDataUrl;
+          updateProgress(100);
+        } catch (err) {
+          showError(err.message);
+          console.error(err);
+          $("#resultBack").src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0NDQ0NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIj48L2NpcmNsZT48bGluZSB4MT0iMTUiIHkxPSI5IiB4Mj0iOSIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjkiIHkxPSI5IiB4Mj0iMTUiIHkyPSIxNSI+PC9saW5lPjwvc3ZnPg==';
+        }
+
+        statusEl.textContent = '¡Proceso completado!';
+        toast('¡Nuevo look creado! ✅');
         
+        setTimeout(() => updateProgress(0), 2000);
+
+      } catch (err) {
+        console.error('Error al aplicar peinado:', err);
+        updateProgress(0);
+        showError(err.message || 'Error desconocido');
+        statusEl.textContent = 'Error en el proceso.';
       } finally {
         runBtn.disabled = false;
         runBtn.textContent = 'Aplicar Peinado';
@@ -1055,7 +1045,7 @@
     // ========= Descargar resultado =========
     downloadBtn.addEventListener('click', async ()=> {
       try {
-        const images = [$('#resultFront'), $('#resultSide'), $('#resultBack')];
+        const images = [$("#resultFront"), $("#resultSide"), $("#resultBack")];
         
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
